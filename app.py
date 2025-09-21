@@ -1,9 +1,34 @@
+import subprocess
+import sys
+
+# List of required packages
+required_packages = [
+    "pandas",
+    "numpy",
+    "streamlit",
+    "plotly",
+    "scikit-learn",
+    "fuzzywuzzy",
+    "python-Levenshtein"
+]
+
+# Install any missing packages at runtime
+for package in required_packages:
+    try:
+        __import__(package)
+    except ImportError:
+        subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+
+# Now imports will work
 import streamlit as st
 import pandas as pd
+import numpy as np
 import plotly.express as px
-from rapidfuzz import fuzz, process
-from datetime import datetime
-import os
+from fuzzywuzzy import fuzz
+from fuzzywuzzy import process
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
+
 
 # ---------------------------------
 # Page Config
