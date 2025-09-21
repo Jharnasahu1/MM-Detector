@@ -1,23 +1,4 @@
-import subprocess
-import sys
 
-# List of required packages
-required_packages = [
-    "pandas",
-    "numpy",
-    "streamlit",
-    "plotly",
-    "scikit-learn",
-    "fuzzywuzzy",
-    "python-Levenshtein"
-]
-
-# Install any missing packages at runtime
-for package in required_packages:
-    try:
-        __import__(package)
-    except ImportError:
-        subprocess.check_call([sys.executable, "-m", "pip", "install", package])
 
 # Now imports will work
 import streamlit as st
